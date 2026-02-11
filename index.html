@@ -74,14 +74,20 @@
 
 <script>
 const botonNo = document.getElementById("no");
+const botonSi = document.getElementById("si");
 const contenedor = document.querySelector(".botones");
 
 botonNo.addEventListener("mouseover", function() {
     const contWidth = contenedor.clientWidth - botonNo.clientWidth;
-    const contHeight = contenedor.clientHeight - botonNo.clientHeight;
+
+    // Limitar verticalmente al mismo rango que el botón "Sí"
+    const botonSiTop = botonSi.offsetTop;
+    const margen = 10; // margen para que no queden pegados
+    const minY = botonSiTop - margen;
+    const maxY = botonSiTop + margen;
 
     const x = Math.random() * contWidth;
-    const y = Math.random() * contHeight;
+    const y = minY + Math.random() * (maxY - minY);
 
     botonNo.style.left = x + "px";
     botonNo.style.top = y + "px";
@@ -93,5 +99,7 @@ function respuestaSi() {
 </script>
 
 
+
 </body>
 </html>
+
